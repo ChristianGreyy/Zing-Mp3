@@ -14,11 +14,15 @@ const resetPage = (page) => {
     document.querySelector('.page__page-6__overlay').style.display = 'none';
     document.querySelector('.page__page-6__alpha').style.display = 'none';
     document.querySelector('.page__page-6__alpha2').style.display = 'none';
+
+    menuListItem.forEach(menuItem => menuItem.classList.remove('menu__list-item--active'));
+
 }
 
 menuListItem.forEach(menuItem => {
     menuItem.onclick = (e) => {
         resetPage(page);
+        menuItem.classList.add('menu__list-item--active');
         let pageNumber = menuItem.classList[1][17];
         let classPage = "page__page-";
         classPage += pageNumber;
