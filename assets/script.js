@@ -28,11 +28,11 @@ const app = {
         }
         ,
         {
-            name: 'Bước qua mùa cô đơn',
-            singer: 'Vũ',
-            background: './background/buocquamuacodon.jpg',
-            path: './music/BuocQuaMuaCoDon-Vu-6879419.mp3',
-            length: '04:38'
+            name: 'Muộn rồi mà sao còn',
+            singer: 'Sơn Tùng MTP',
+            background: './background/muonroimasaocon.jfif',
+            path: './music/muonroimasaocon.mp3',
+            length: '04:35'
         }
         ,
         {
@@ -57,23 +57,23 @@ const app = {
         let database = this.music.map(music => {
             i ++;
             let rankHTML = '<div class="page__page-3__list-items__left-rank">';
-            if(i === 0) {
+            if(i === 1) {
                 rankHTML = '<div class="page__page-3__list-items__left-rank page__page-3__list-items__left-rank--1">'
-            } else if(i === 1) {
-                rankHTML = '<div class="page__page-3__list-items__left-rank page__page-3__list-items__left-rank--2">'
             } else if(i === 2) {
+                rankHTML = '<div class="page__page-3__list-items__left-rank page__page-3__list-items__left-rank--2">'
+            } else if(i === 3) {
                 rankHTML = '<div class="page__page-3__list-items__left-rank page__page-3__list-items__left-rank--3">'
             }
 
             let isCurrent = `<li class="page__page-3__list-items page__page-3__list-items${i}">`;
-            if(i === this.currentIndex) {
+            if(i-1 === this.currentIndex) {
                 isCurrent = `<li class="page__page-3__list-items page__page-3__list-items${i} page__page-3__list-items--active">`;
             }
             return  `
                 ${isCurrent}
                 <div class="page__page-3__list-items__left">
                     ${rankHTML}
-                        ${i + 1}
+                        ${i}
                     </div>
                     <div class="page__page-3__list-items__left-line">
                         <i class="icofont-minus"></i>
@@ -144,6 +144,13 @@ const app = {
             return element;
         }
 
+        // remove class 
+        let removeListItemActive = (list) => {
+            list.forEach(item => {
+                item.classList.remove('page__page-3__list-items--active');
+            })
+        }
+
         // Default
         findMusicByIndex(0);
 
@@ -193,9 +200,14 @@ const app = {
          // Find current index by zing chart
         document.querySelectorAll('.page__page-3__list-items').forEach(item => {
             item.onclick = (e) => {
+                removeListItemActive(document.querySelectorAll('.page__page-3__list-items'));
                 this.currentIndex = +(item.classList[1][item.classList[1].length - 1]);
+                this.currentIndex -= 1;
                 findMusicByIndex(this.currentIndex);
                 playMusic();
+                this.switch = true;
+                buttonDashboard.classList.toggle('dashboards__center-button__play--active', this.switch);
+                item.classList.add('page__page-3__list-items--active')
             }
         })
         
