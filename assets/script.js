@@ -22,8 +22,8 @@ const app = {
         {
             name: 'Bước qua mùa cô đơn',
             singer: 'Vũ',
-            background: './background/buocquamuacodon.jpg',
-            path: './music/BuocQuaMuaCoDon-Vu-6879419.mp3',
+            background: './background/buocquanhau.jpg',
+            path: './music/buocquanhau.mp3',
             length: '04:38'
         }
         ,
