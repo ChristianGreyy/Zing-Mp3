@@ -6,6 +6,7 @@
     position: relative;
     width: 100%;
     padding: 0 24px;
+    display: none;
 }
 
 .page__page-4-header{

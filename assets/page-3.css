@@ -4,6 +4,7 @@
     overflow-y: scroll;
     height: calc(100vh - 200px); 
     position: relative;
+    display: none;
 }
 
 .page__page-3__overlay {
@@ -15,6 +16,7 @@
     filter: grayscale(1);
     position: absolute;
     left: 0;
+    display: none;
 }
 
 .page__page-3__alpha {
@@ -25,6 +27,7 @@
     z-index: 0;
     background-image: linear-gradient(
     180deg,hsla(0,0%,100%,0) 37%,#170f23);
+    display: none;
 }
 
 .page__page-3__alpha2 {
@@ -35,6 +38,7 @@
     opacity: .9;
     z-index: 0;
     background-image: linear-gradient(180deg,#170f23,#170f23);
+    display: none;
 
 
 }
