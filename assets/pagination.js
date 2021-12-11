@@ -1,8 +1,6 @@
 const menuListItem = document.querySelectorAll('.menu__list-item');
 let page = document.querySelectorAll('.page__page-items');
 
-console.log(menuListItem);
-
 const resetPage = (page) => {
     page.forEach(pageItem => {
         pageItem.style.display = 'none';

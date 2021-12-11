@@ -12,24 +12,130 @@ const app = {
     switch: false,
     music: [
         {
+            name: 'Chúng ta của hiện tại',
+            singer: 'Sơn Tùng MTP',
+            background: './background/chungtacuahientai.jfif',
+            path: './music/chungtacuahientai.mp3',
+            length: '05:01'
+        }
+        ,
+        {
             name: 'Bước qua mùa cô đơn',
             singer: 'Vũ',
             background: './background/buocquamuacodon.jpg',
-            path: './music/BuocQuaMuaCoDon-Vu-6879419.mp3'
+            path: './music/BuocQuaMuaCoDon-Vu-6879419.mp3',
+            length: '04:38'
+        }
+        ,
+        {
+            name: 'Bước qua mùa cô đơn',
+            singer: 'Vũ',
+            background: './background/buocquamuacodon.jpg',
+            path: './music/BuocQuaMuaCoDon-Vu-6879419.mp3',
+            length: '04:38'
+        }
+        ,
+        {
+            name: 'Bước qua mùa cô đơn',
+            singer: 'Vũ',
+            background: './background/buocquamuacodon.jpg',
+            path: './music/BuocQuaMuaCoDon-Vu-6879419.mp3',
+            length: '04:38'
+        }
+        ,
+        {
+            name: 'Bước qua mùa cô đơn',
+            singer: 'Vũ',
+            background: './background/buocquamuacodon.jpg',
+            path: './music/BuocQuaMuaCoDon-Vu-6879419.mp3',
+            length: '04:38'
         }
 
     ],
+    render: function() {
+        let i = 0;
+        let database = this.music.map(music => {
+            i ++;
+            let rankHTML = '<div class="page__page-3__list-items__left-rank">';
+            if(i === 0) {
+                rankHTML = '<div class="page__page-3__list-items__left-rank page__page-3__list-items__left-rank--1">'
+            } else if(i === 1) {
+                rankHTML = '<div class="page__page-3__list-items__left-rank page__page-3__list-items__left-rank--2">'
+            } else if(i === 2) {
+                rankHTML = '<div class="page__page-3__list-items__left-rank page__page-3__list-items__left-rank--3">'
+            }
+
+            let isCurrent = `<li class="page__page-3__list-items page__page-3__list-items${i}">`;
+            if(i === this.currentIndex) {
+                isCurrent = `<li class="page__page-3__list-items page__page-3__list-items${i} page__page-3__list-items--active">`;
+            }
+            return  `
+                ${isCurrent}
+                <div class="page__page-3__list-items__left">
+                    ${rankHTML}
+                        ${i + 1}
+                    </div>
+                    <div class="page__page-3__list-items__left-line">
+                        <i class="icofont-minus"></i>
+                    </div>
+                    <div class="page__page-3__list-items__left-background">
+                        <img src="${music.background}" alt="" class="page__page-3__list-items__left-background-img">
+                        <div class="page__page-3__list-items__left-background-play">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="page__page-3__list-items__left-des">
+                        <div class="page__page-3__list-items__left-des-name">
+                            ${music.name}
+                        </div>
+                        <div class="page__page-3__list-items__left-des-singer">
+                            ${music.singer}
+                        </div>
+                    </div>
+                </div>
+                <div class="page__page-3__list-items__center">
+                    <a href="/" class="page__page-3__list-items__center-name">
+                        ${music.name} (Single)
+                    </a>
+                </div>
+                <div class="page__page-3__list-items__right">
+                    <div class="page__page-3__list-items__right-time">
+                    ${music.length}
+                    </div>
+                </div>
+            </li>
+        `
+        })
+        // if()
+        $('.page__page-3__list').html(database.join(''));
+    },
     run: function() {
+        this.render();
         let minutes = 0;
         let seconds = 0;
-        findMusicByIndex = (currentIndex) => {
+
+        /* =============================== FUNCTIONS ============================== */
+
+        let playMusic =() => {
+            this.switch = !this.switch;
+            buttonDashboard.classList.toggle('dashboards__center-button__play--active', this.switch);
+            audio.play();
+        }
+
+        let pauseMusic =() => {
+            this.switch = !this.switch;
+            buttonDashboard.classList.toggle('dashboards__center-button__play--active', this.switch);
+            audio.pause();
+        }
+
+        let findMusicByIndex = (currentIndex) => {
             audio.src = this.music[currentIndex].path;
             document.querySelector('.dashboards__left-left-img').src = this.music[currentIndex].background;
             document.querySelector('.dashboards__left-center-name-music').innerHTML = this.music[currentIndex].name;
             document.querySelector('.dashboards__left-center-name-singer').innerHTML = this.music[currentIndex].singer;
         }
 
-        solveTheTimeLessThan10 = (element) => {
+        let solveTheTimeLessThan10 = (element) => {
             if(element < 10) {
                 let string = ""; string += "0";
                 string += element.toString();
@@ -38,7 +144,10 @@ const app = {
             return element;
         }
 
+        // Default
         findMusicByIndex(0);
+
+        /* =============================== EVENT ============================== */
 
         audio.ontimeupdate = (e) => {
             // solve current volume
@@ -78,7 +187,17 @@ const app = {
                 buttonDashboard.classList.toggle('dashboards__center-button__play--active', this.switch);
                 audio.pause();
             }
+
         }
+        
+         // Find current index by zing chart
+        document.querySelectorAll('.page__page-3__list-items').forEach(item => {
+            item.onclick = (e) => {
+                this.currentIndex = +(item.classList[1][item.classList[1].length - 1]);
+                findMusicByIndex(this.currentIndex);
+                playMusic();
+            }
+        })
         
         // set current time
         document.querySelector('.progress').onchange = (e) => {
@@ -88,15 +207,10 @@ const app = {
 
         // Click PLay or Pause Button
         playButton.onclick = (e) => {
-            this.switch = !this.switch;
-            buttonDashboard.classList.toggle('dashboards__center-button__play--active', this.switch);
-            audio.play();
-
+            playMusic();
         }   
         pauseButton.onclick = (e) => {
-            this.switch = !this.switch;
-            buttonDashboard.classList.toggle('dashboards__center-button__play--active', this.switch);
-            audio.pause();
+            pauseMusic();
         }
 
         // set current volume
@@ -125,7 +239,6 @@ const app = {
             }
             // Turning on 
             else {
-                console.log("ok")
                 this.currentVolume = 0;
                 document.querySelector('.progress-volume').value = 0;
                 document.querySelector('.dashboards__left__volume').classList.add('dashboards__left__volume--active');
