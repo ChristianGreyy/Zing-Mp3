@@ -10,7 +10,7 @@ const app = {
     currentVolume: 1,
     count: 0,
     switch: false,
-    music: [
+    musicZingChart: [
         {
             name: 'Chúng ta của hiện tại',
             singer: 'Sơn Tùng MTP',
@@ -52,28 +52,111 @@ const app = {
         }
 
     ],
+    musicWeek_1: [
+        {
+            name: 'Chúng ta của hiện tại',
+            singer: 'Sơn Tùng MTP',
+            background: './background/chungtacuahientai.jfif',
+            path: './music/chungtacuahientai.mp3',
+            length: '05:01'
+        }
+        ,
+        {
+            name: 'Bước qua mùa cô đơn',
+            singer: 'Vũ',
+            background: './background/buocquanhau.jpg',
+            path: './music/buocquanhau.mp3',
+            length: '04:38'
+        }
+        ,
+        {
+            name: 'Muộn rồi mà sao còn',
+            singer: 'Sơn Tùng MTP',
+            background: './background/muonroimasaocon.jfif',
+            path: './music/muonroimasaocon.mp3',
+            length: '04:35'
+        }
+        ,
+        {
+            name: 'See you again',
+            singer: 'Vũ',
+            background: './background/buocquamuacodon.jpg',
+            path: './music/BuocQuaMuaCoDon-Vu-6879419.mp3',
+            length: '04:38'
+        }
+        ,
+        {
+            name: 'Bước qua mùa cô đơn',
+            singer: 'Vũ',
+            background: './background/buocquamuacodon.jpg',
+            path: './music/BuocQuaMuaCoDon-Vu-6879419.mp3',
+            length: '04:38'
+        }
+    ],
+    musicWeek_2: [
+        {
+            name: 'See you again',
+            singer: 'Wiz Khalifa ft. Charlie Puth',
+            background: './background/seeyouagain.jpg',
+            path: './music/seeyouagain.mp3',
+            length: '03:49'
+        }
+        ,
+        {
+            name: 'Love me like you do',
+            singer: 'Ellie Goulding',
+            background: './background/lovemelikeyoudo.png',
+            path: './music/lovemelikeyoudo.mp3',
+            length: '04:13'
+        }
+        ,
+        {
+            name: 'Monsters',
+            singer: 'Katie Sky',
+            background: './background/monster.jpg',
+            path: './music/monster.mp3',
+            length: '03:36'
+        }
+        ,
+        {
+            name: 'On my way',
+            singer: 'Alan Walker, Sabrina Carpenter, Farruko',
+            background: './background/onmyway.jpg',
+            path: './music/onmyway.mp3',
+            length: '03:13'
+        }
+        ,
+        {
+            name: 'Dancing with ghost',
+            singer: 'Sasha Alex Sloan',
+            background: './background/dancingwithghost.jpg',
+            path: './music/dancingwithghost.mp3',
+            length: '03:18'
+        }
+    ],
     render: function() {
-        let i = 0;
-        let database = this.music.map(music => {
-            i ++;
+        // ZING CHART MUSIC
+        let indexZingChart = 0;
+        let databaseZingChart = this.musicZingChart.map(music => {
+            indexZingChart ++;
             let rankHTML = '<div class="page__page-3__list-items__left-rank">';
-            if(i === 1) {
+            if(indexZingChart === 1) {
                 rankHTML = '<div class="page__page-3__list-items__left-rank page__page-3__list-items__left-rank--1">'
-            } else if(i === 2) {
+            } else if(indexZingChart === 2) {
                 rankHTML = '<div class="page__page-3__list-items__left-rank page__page-3__list-items__left-rank--2">'
-            } else if(i === 3) {
+            } else if(indexZingChart === 3) {
                 rankHTML = '<div class="page__page-3__list-items__left-rank page__page-3__list-items__left-rank--3">'
             }
 
-            let isCurrent = `<li class="page__page-3__list-items page__page-3__list-items${i}">`;
-            if(i-1 === this.currentIndex) {
-                isCurrent = `<li class="page__page-3__list-items page__page-3__list-items${i} page__page-3__list-items--active">`;
+            let isCurrent = `<li class="page__page-3__list-items page__page-3__list-items${indexZingChart}">`;
+            if(indexZingChart-1 === this.currentIndex) {
+                isCurrent = `<li class="page__page-3__list-items page__page-3__list-items${indexZingChart} page__page-3__list-items--active">`;
             }
             return  `
                 ${isCurrent}
                 <div class="page__page-3__list-items__left">
                     ${rankHTML}
-                        ${i}
+                        ${indexZingChart}
                     </div>
                     <div class="page__page-3__list-items__left-line">
                         <i class="icofont-minus"></i>
@@ -106,8 +189,102 @@ const app = {
             </li>
         `
         })
-        // if()
-        $('.page__page-3__list').html(database.join(''));
+        $('.page__page-3__list').html(databaseZingChart.join(''));
+
+        // ZING CHART WEEK-1 MUSIC
+        let indexWeek_1 = 0;
+        let databaseWeek_1 = this.musicWeek_1.map(music => {
+            indexWeek_1++;
+            let isCurrent = `<li class="page__page-3__rank-week__content-list-items__list-music-items page__page-3__rank-week__content-list-items__list-music-items${indexWeek_1} page__page-3__rank-week__content-list-items__list-music-items--1">`;
+            if(indexZingChart-1 === this.currentIndex) {
+                isCurrent = `<li class="page__page-3__rank-week__content-list-items__list-music-items page__page-3__rank-week__content-list-items__list-music-items${indexWeek_1} page__page-3__rank-week__content-list-items__list-music-items--1 page__page-3__rank-week__content-list-items__list-music-items--active">`;
+            }
+
+            let stringName = music.name.slice(0,16);
+            if(music.name.length >= 16) {
+                stringName += "...";
+            }
+            console.log(stringName);
+            return `
+                ${isCurrent}
+                    <div class="page__page-3__rank-week__content-list-items__list-music-items-rank">
+                        ${indexWeek_1}    
+                    </div>
+                    <div class="page__page-3__rank-week__content-list-items__list-music-items-icon">
+                        <i class="icofont-minus"></i>
+                    </div>
+                    <div class="page__page-3__rank-week__content-list-items__list-music-items-background">
+                        <img src="${music.background}" alt="" class="page__page-3__rank-week__content-list-items__list-music-items-background-img">
+                        <div class="page__page-3__rank-week__content-list-items__list-music-items-background-icon">
+                            <i class="fas fa-play"></i>    
+                        </div>
+                    </div>
+                    <div class="page__page-3__rank-week__content-list-items__list-music-items-des">
+                        <div class="page__page-3__rank-week__content-list-items__list-music-items-des-name">
+                            ${stringName}
+                        </div>
+                        <div class="page__page-3__rank-week__content-list-items__list-music-items-des-singer">
+                            ${music.singer}
+                        </div>
+                    </div>
+                    <div class="page__page-3__rank-week__content-list-items__list-music-items-time">
+                        ${music.length}
+                    </div>
+                </li>
+            `
+        })
+        $('.page__page-3__rank-week__content-list-items__list-music--vietnam').html(databaseWeek_1.join(''));
+
+        // ZING CHART WEEK-2 MUSIC
+        let indexWeek_2 = 0;
+        let databaseWeek_2 = this.musicWeek_2.map(music => {
+            indexWeek_2++;
+            let isCurrent = `<li class="page__page-3__rank-week__content-list-items__list-music-items page__page-3__rank-week__content-list-items__list-music-items${indexWeek_2} page__page-3__rank-week__content-list-items__list-music-items--2">`;
+            if(indexZingChart-1 === this.currentIndex) {
+                isCurrent = `<li class="page__page-3__rank-week__content-list-items__list-music-items page__page-3__rank-week__content-list-items__list-music-items${indexWeek_2} page__page-3__rank-week__content-list-items__list-music-items--2 page__page-3__rank-week__content-list-items__list-music-items--active">`;
+            }
+
+            let stringName = music.name.slice(0,16);
+            if(music.name.length >= 16) {
+                stringName += "...";
+            }
+            let stringSinger = music.singer.slice(0,16);
+            if(music.singer.length >= 16) {
+                stringSinger += "...";
+            }
+            
+            return `
+                ${isCurrent}
+                    <div class="page__page-3__rank-week__content-list-items__list-music-items-rank">
+                        ${indexWeek_2}    
+                    </div>
+                    <div class="page__page-3__rank-week__content-list-items__list-music-items-icon">
+                        <i class="icofont-minus"></i>
+                    </div>
+                    <div class="page__page-3__rank-week__content-list-items__list-music-items-background">
+                        <img src="${music.background}" alt="" class="page__page-3__rank-week__content-list-items__list-music-items-background-img">
+                        <div class="page__page-3__rank-week__content-list-items__list-music-items-background-icon">
+                            <i class="fas fa-play"></i>    
+                        </div>
+                    </div>
+                    <div class="page__page-3__rank-week__content-list-items__list-music-items-des">
+                        <div class="page__page-3__rank-week__content-list-items__list-music-items-des-name">
+                            ${stringName}
+                        </div>
+                        <div class="page__page-3__rank-week__content-list-items__list-music-items-des-singer">
+                            ${stringSinger}
+                        </div>
+                    </div>
+                    <div class="page__page-3__rank-week__content-list-items__list-music-items-time">
+                        ${music.length}
+                    </div>
+                </li>
+            `
+        })
+        $('.page__page-3__rank-week__content-list-items__list-music--usuk').html(databaseWeek_2.join(''));
+
+
+
     },
     run: function() {
         this.render();
@@ -128,11 +305,11 @@ const app = {
             audio.pause();
         }
 
-        let findMusicByIndex = (currentIndex) => {
-            audio.src = this.music[currentIndex].path;
-            document.querySelector('.dashboards__left-left-img').src = this.music[currentIndex].background;
-            document.querySelector('.dashboards__left-center-name-music').innerHTML = this.music[currentIndex].name;
-            document.querySelector('.dashboards__left-center-name-singer').innerHTML = this.music[currentIndex].singer;
+        let findMusicByIndex = (kindMusic, index) => {
+            audio.src = kindMusic[index].path;
+            document.querySelector('.dashboards__left-left-img').src = kindMusic[index].background;
+            document.querySelector('.dashboards__left-center-name-music').innerHTML = kindMusic[index].name;
+            document.querySelector('.dashboards__left-center-name-singer').innerHTML = kindMusic[index].singer;
         }
 
         let solveTheTimeLessThan10 = (element) => {
@@ -145,14 +322,46 @@ const app = {
         }
 
         // remove class 
-        let removeListItemActive = (list) => {
-            list.forEach(item => {
-                item.classList.remove('page__page-3__list-items--active');
-            })
+        let removeListItemActive = (list, string) => {
+            if(string === 'zingchart') {
+                list.forEach(item => {
+                    item.classList.remove('page__page-3__list-items--active');
+                })
+            } else if(string === 'zingchart-week-1') {
+                list.forEach(item => {
+                    item.classList.remove('page__page-3__rank-week__content-list-items__list-music-items--active');
+                })
+            } else if(string === 'zingchart-week-2') {
+                list.forEach(item => {
+                    item.classList.remove('page__page-3__rank-week__content-list-items__list-music-items--active');
+                })
+            } 
+        }
+
+        let musicRun = (item, string) => {
+            if(string === 'zingchart') {
+                findMusicByIndex(this.musicZingChart, this.currentIndex);
+            } else if(string === 'zingchart-week-1') {
+                findMusicByIndex(this.musicWeek_1, this.currentIndex);
+            } else if(string === 'zingchart-week-2') {
+                findMusicByIndex(this.musicWeek_2, this.currentIndex);
+            }
+            playMusic();
+            this.switch = true;
+            buttonDashboard.classList.toggle('dashboards__center-button__play--active', this.switch);
+            if(item) {
+                if(string === 'zingchart') {
+                    item.classList.add('page__page-3__list-items--active')
+                } else if(string === 'zingchart-week-1') {
+                    item.classList.add('page__page-3__rank-week__content-list-items__list-music-items--active');
+                } else if(string === 'zingchart-week-2') {
+                    item.classList.add('page__page-3__rank-week__content-list-items__list-music-items--active');
+                }
+            }
         }
 
         // Default
-        findMusicByIndex(0);
+        findMusicByIndex(this.musicZingChart, 0);
 
         /* =============================== EVENT ============================== */
 
@@ -188,11 +397,16 @@ const app = {
 
             // solve when the music ended   
             if(currentTimeMusic === durationTimeMusic) {
-                document.querySelector('.progress').value = 0;
-                audio.currentTime  = 0;
-                this.switch = !this.switch;
-                buttonDashboard.classList.toggle('dashboards__center-button__play--active', this.switch);
-                audio.pause();
+                if(this.currentIndex === this.musicZingChart.length) {
+                    document.querySelector('.progress').value = 0;
+                    audio.currentTime  = 0;
+                    this.switch = !this.switch;
+                    buttonDashboard.classList.toggle('dashboards__center-button__play--active', this.switch);
+                    audio.pause();
+                } else {
+                    this.currentIndex ++;
+                    musicRun();
+                }
             }
 
         }
@@ -200,17 +414,35 @@ const app = {
          // Find current index by zing chart
         document.querySelectorAll('.page__page-3__list-items').forEach(item => {
             item.onclick = (e) => {
-                removeListItemActive(document.querySelectorAll('.page__page-3__list-items'));
+                removeListItemActive(document.querySelectorAll('.page__page-3__list-items'), 'zingchart');
                 this.currentIndex = +(item.classList[1][item.classList[1].length - 1]);
                 this.currentIndex -= 1;
-                findMusicByIndex(this.currentIndex);
-                playMusic();
-                this.switch = true;
-                buttonDashboard.classList.toggle('dashboards__center-button__play--active', this.switch);
-                item.classList.add('page__page-3__list-items--active')
+                musicRun(item, 'zingchart');
             }
         })
-        
+
+         // Find current index by zing chart Week-1
+        document.querySelectorAll('.page__page-3__rank-week__content-list-items__list-music-items--1').forEach(item => {
+            item.onclick = (e) => {
+                removeListItemActive(document.querySelectorAll('.page__page-3__rank-week__content-list-items__list-music-items--1'), 'zingchart-week-1');
+                console.log(item)
+                this.currentIndex = +(item.classList[1][item.classList[1].length - 1]);
+                this.currentIndex -= 1;
+                musicRun(item, 'zingchart-week-1');
+            }
+        })
+
+         // Find current index by zing chart Week-2
+        document.querySelectorAll('.page__page-3__rank-week__content-list-items__list-music-items--2').forEach(item => {
+            item.onclick = (e) => {
+                removeListItemActive(document.querySelectorAll('.page__page-3__rank-week__content-list-items__list-music-items--2'), 'zingchart-week-2');
+                console.log(item)
+                this.currentIndex = +(item.classList[1][item.classList[1].length - 1]);
+                this.currentIndex -= 1;
+                musicRun(item, 'zingchart-week-2');
+            }
+        })
+   
         // set current time
         document.querySelector('.progress').onchange = (e) => {
             let currentTimeMusic = Math.floor(document.querySelector('.progress').value / 300 * audio.duration);
