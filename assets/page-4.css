@@ -150,11 +150,17 @@
 .owl-carousel .owl-nav button.owl-next {
     right: -8px;
     top: 20%;
+    
 }
 
 .owl-carousel .owl-nav button.owl-prev {
     left: -8px;
     top: 20%;
+}
+
+.owl-carousel .owl-nav button.owl-prev span,
+.owl-carousel .owl-nav button.owl-next span {
+    height: 46px;
 }
 
 .owl-dots {

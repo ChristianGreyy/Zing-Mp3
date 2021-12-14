@@ -1,0 +1,30 @@
+.app {
+    background-color: #6D51E4;
+    color: white;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.center{
+    
+}
+.center-notification{
+    margin: 0;
+}
+
+.center-comback {
+    margin-top: 12px;
+    text-align: center;
+}
+
+.center-comback-text{
+    color: white;
+}

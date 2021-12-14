@@ -36,11 +36,19 @@ const app = {
         }
         ,
         {
-            name: 'Bước qua mùa cô đơn',
-            singer: 'Vũ',
-            background: './background/buocquamuacodon.jpg',
-            path: './music/BuocQuaMuaCoDon-Vu-6879419.mp3',
-            length: '04:38'
+            name: 'Đừng như thói quen',
+            singer: 'JayKii, Sara Lưu',
+            background: './background/dungnhuthoiquen.jpg',
+            path: './music/dungnhuthoiquen.mp3',
+            length: '04:26'
+        }
+        ,
+        {
+            name: 'Hẹn một mai',
+            singer: 'Bùi Anh Tuấn',
+            background: './background/henmotmai.jfif',
+            path: './music/henmotmai.mp3',
+            length: '04:43'
         }
         ,
         {
@@ -50,7 +58,14 @@ const app = {
             path: './music/BuocQuaMuaCoDon-Vu-6879419.mp3',
             length: '04:38'
         }
-
+        ,
+        {
+            name: 'Khó vẽ nụ cười',
+            singer: 'Đạt G, Du Uyên',
+            background: './background/khovenucuoi.jpg',
+            path: './music/khovenucuoi.mp3',
+            length: '05:32'
+        }
     ],
     musicWeek_1: [
         {
@@ -78,11 +93,11 @@ const app = {
         }
         ,
         {
-            name: 'See you again',
-            singer: 'Vũ',
-            background: './background/buocquamuacodon.jpg',
-            path: './music/BuocQuaMuaCoDon-Vu-6879419.mp3',
-            length: '04:38'
+            name: 'Đừng như thói quen',
+            singer: 'JayKii, Sara Lưu',
+            background: './background/dungnhuthoiquen.jpg',
+            path: './music/dungnhuthoiquen.mp3',
+            length: '04:26'
         }
         ,
         {
