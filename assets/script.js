@@ -556,3 +556,44 @@ $('.owl-carousel').owlCarousel({
         }
     }
 })
+
+
+// SETTINGS
+let checkSettings = true;
+
+document.querySelector('.page__header__right-items--setting').onclick = (e) => {
+    checkSettings? document.querySelector('.page__header__right-items--setting-absolute').style.display = 'block' : document.querySelector('.page__header__right-items--setting-absolute').style.display = 'none';
+    checkSettings = !checkSettings;
+}
+
+
+// THEME
+
+document.querySelector('.page__header__right-items--theme').onclick = (e) => {
+    document.querySelector('.page__header__right-items--theme-Absolute').style.display = 'block';
+    document.querySelector('.app-overlay').style.display = 'block';
+}
+
+document.querySelector('.page__header__right-items--theme-Absolute-close').onclick = (e) => {
+    document.querySelector('.page__header__right-items--theme-Absolute').style.display = 'none';
+    document.querySelector('.app-overlay').style.display = 'none';
+}
+
+let index 
+
+const themeActive = () => {
+    let index = 0;
+    let listTheme = document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image-absolute-execute');
+    for(let i in listTheme) {
+        listTheme[i].onclick = (e) => {    
+            if(+i === 0) {
+                alert('success');
+                document.querySelector('.menu').style.backgroundColor = 'hsla(0,0%,100%,0.05)';
+            }
+        }
+
+    }
+
+
+}
+themeActive();
