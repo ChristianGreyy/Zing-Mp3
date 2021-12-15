@@ -34,7 +34,9 @@ menuListItem.forEach(menuItem => {
             document.querySelector('.page__page-6__alpha2').style.display = 'block';
         }
         currentPage = document.querySelector('.'.concat(classPage));
-        currentPage.style.display = 'block';
+        if(currentPage) {
+            currentPage.style.display = 'block';
+        }
         // console.log(currentPage);
     }
 })
