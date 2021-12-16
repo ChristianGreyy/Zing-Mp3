@@ -105,12 +105,12 @@ p{
 li{
     list-style: none;
 }
-i{
+/* i{
     font-size: 20px;
 }
 h3{
     font-size: 18px;
-}
+} */
 .page__page-2_list-recently_item_image_img{
     position: absolute;
     display: flex;

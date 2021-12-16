@@ -1,5 +1,7 @@
 let pauseButton = document.querySelector('.icon-pause');
 let playButton = document.querySelector('.icon-play');
+let nextButton = document.querySelector('.dashboards__center-button__next');
+let prevButton = document.querySelector('.dashboards__center-button__prev');
 let buttonDashboard = document.querySelector('.dashboards__center-button__play')
 
 ////////////////
@@ -101,11 +103,11 @@ const app = {
         }
         ,
         {
-            name: 'Bước qua mùa cô đơn',
-            singer: 'Vũ',
-            background: './background/buocquamuacodon.jpg',
-            path: './music/BuocQuaMuaCoDon-Vu-6879419.mp3',
-            length: '04:38'
+            name: 'Hẹn một mai',
+            singer: 'Bùi Anh Tuấn',
+            background: './background/henmotmai.jfif',
+            path: './music/henmotmai.mp3',
+            length: '04:43'
         }
     ],
     musicWeek_2: [
@@ -219,7 +221,6 @@ const app = {
             if(music.name.length >= 16) {
                 stringName += "...";
             }
-            console.log(stringName);
             return `
                 ${isCurrent}
                     <div class="page__page-3__rank-week__content-list-items__list-music-items-rank">
@@ -358,16 +359,27 @@ const app = {
                 findMusicByIndex(this.musicZingChart, this.currentIndex);
             } else if(string === 'zingchart-week-1') {
                 findMusicByIndex(this.musicWeek_1, this.currentIndex);
+                console.log(this.currentIndex);
             } else if(string === 'zingchart-week-2') {
                 findMusicByIndex(this.musicWeek_2, this.currentIndex);
             }
+
             playMusic();
             this.switch = true;
             buttonDashboard.classList.toggle('dashboards__center-button__play--active', this.switch);
             if(item) {
                 if(string === 'zingchart') {
-                    item.classList.add('page__page-3__list-items--active')
+                    item.classList.add('page__page-3__list-items--active');
+
+                    // zing-chart-week-1
+                    removeListItemActive(document.querySelectorAll('.page__page-3__rank-week__content-list-items__list-music-items'), 'zingchart-week-1');
+                    itemString = '.page__page-3__rank-week__content-list-items__list-music-items'.concat(this.currentIndex + 1);
+                    let item2 = document.querySelector(itemString);
+                    if(item2) {
+                        item2.classList.add('page__page-3__rank-week__content-list-items__list-music-items--active');
+                    }
                 } else if(string === 'zingchart-week-1') {
+                    item.classList.add('page__page-3__list-items--active');
                     item.classList.add('page__page-3__rank-week__content-list-items__list-music-items--active');
                 } else if(string === 'zingchart-week-2') {
                     item.classList.add('page__page-3__rank-week__content-list-items__list-music-items--active');
@@ -410,9 +422,69 @@ const app = {
             let currentProgress = durationTimeMusic ? Math.floor(currentTimeMusic/durationTimeMusic * 300) : 0;
             document.querySelector('.progress').value = currentProgress;
 
-            // solve when the music ended   
-            if(currentTimeMusic === durationTimeMusic) {
-                if(this.currentIndex === this.musicZingChart.length) {
+            // solve when the music zingchart ended   
+            const solveWhenMusicEnded = (kindMusic, string) => {
+                if(currentTimeMusic === durationTimeMusic) {
+                    if(this.currentIndex === kindMusic.length - 1) {
+                        if(string === 'zingchart') {
+                            removeListItemActive(document.querySelectorAll('.page__page-3__list-items'), string);
+                            itemString = '.page__page-3__list-items'.concat('1');
+                            let item = document.querySelector(itemString);
+                            item.classList.add('page__page-3__list-items--active');
+                            findMusicByIndex(this.musicZingChart, 0);
+                        } else if(string === 'zingchart-week-1') {
+
+                        } else if(string === 'zingchart-week-2') {
+                            removeListItemActive(document.querySelectorAll('.page__page-3__rank-week__content-list-items__list-music-items.page__page-3__rank-week__content-list-items__list-music-items--2'), string);
+                            itemString = '.page__page-3__rank-week__content-list-items__list-music-items'.concat('1').concat('.page__page-3__rank-week__content-list-items__list-music-items--2');
+                            let item = document.querySelector(itemString);
+                            item.classList.add('page__page-3__rank-week__content-list-items__list-music-items--active');
+                            findMusicByIndex(this.musicWeek_2, 0);
+                        }
+                        this.currentIndex = 0;
+                        document.querySelector('.progress').value = 0;
+                        audio.currentTime  = 0;
+                        this.switch = !this.switch;
+                        buttonDashboard.classList.toggle('dashboards__center-button__play--active', this.switch);
+                        audio.pause();
+                    } else {
+                        this.currentIndex ++;
+                        let itemString = "";
+                        if(string === 'zingchart') {
+                            removeListItemActive(document.querySelectorAll('.page__page-3__list-items'), 'zingchart');
+                            itemString = '.page__page-3__list-items'.concat(this.currentIndex + 1);
+                        } else if(string === 'zingchart-week-1') {
+                            itemString = '.page__page-3__rank-week__content-list-items__list-music-items'.concat(this.currentIndex + 1);
+                        } else if(string === 'zingchart-week-2') {
+                            removeListItemActive(document.querySelectorAll('.page__page-3__rank-week__content-list-items__list-music-items'), 'zingchart-week-2');
+                            itemString = '.page__page-3__rank-week__content-list-items__list-music-items'.concat(this.currentIndex + 1).concat('.page__page-3__rank-week__content-list-items__list-music-items--2');
+                        }
+                        let item = document.querySelector(itemString);
+                        console.log(item);
+                        musicRun(item, string);
+                    }
+                }
+            }
+
+            // solve when the music zingchart next   
+            const solveWhenMusicNext = (kindMusic, string) => {
+                if(this.currentIndex === kindMusic.length - 1) {
+                    if(string === 'zingchart') {
+                        removeListItemActive(document.querySelectorAll('.page__page-3__list-items'), string);
+                        itemString = '.page__page-3__list-items'.concat('1');
+                        let item = document.querySelector(itemString);
+                        item.classList.add('page__page-3__list-items--active');
+                        findMusicByIndex(this.musicZingChart, 0);
+                    } else if(string === 'zingchart-week-1') {
+
+                    } else if(string === 'zingchart-week-2') {
+                        removeListItemActive(document.querySelectorAll('.page__page-3__rank-week__content-list-items__list-music-items.page__page-3__rank-week__content-list-items__list-music-items--2'), string);
+                        itemString = '.page__page-3__rank-week__content-list-items__list-music-items'.concat('1').concat('.page__page-3__rank-week__content-list-items__list-music-items--2');
+                        let item = document.querySelector(itemString);
+                        item.classList.add('page__page-3__rank-week__content-list-items__list-music-items--active');
+                        findMusicByIndex(this.musicWeek_2, 0);
+                    }
+                    this.currentIndex = 0;
                     document.querySelector('.progress').value = 0;
                     audio.currentTime  = 0;
                     this.switch = !this.switch;
@@ -420,9 +492,118 @@ const app = {
                     audio.pause();
                 } else {
                     this.currentIndex ++;
-                    musicRun();
+                        let itemString = "";
+                        if(string === 'zingchart') {
+                            removeListItemActive(document.querySelectorAll('.page__page-3__list-items'), 'zingchart');
+                            itemString = '.page__page-3__list-items'.concat(this.currentIndex + 1);
+                        } else if(string === 'zingchart-week-1') {
+                            itemString = '.page__page-3__rank-week__content-list-items__list-music-items'.concat(this.currentIndex + 1);
+                        } else if(string === 'zingchart-week-2') {
+                            removeListItemActive(document.querySelectorAll('.page__page-3__rank-week__content-list-items__list-music-items'), 'zingchart-week-2');
+                            itemString = '.page__page-3__rank-week__content-list-items__list-music-items'.concat(this.currentIndex + 1).concat('.page__page-3__rank-week__content-list-items__list-music-items--2');
+                        }
+                        let item = document.querySelector(itemString);
+                        console.log(item);
+                        musicRun(item, string);
                 }
             }
+
+            // solve when the music zingchart p ev   
+            const solveWhenMusicPrevious = (kindMusic, string) => {
+                if(this.currentIndex !== 0) {
+                    this.currentIndex --;
+                    let itemString = "";
+                    if(string === 'zingchart') {
+                        removeListItemActive(document.querySelectorAll('.page__page-3__list-items'), 'zingchart');
+                        itemString = '.page__page-3__list-items'.concat(this.currentIndex + 1);
+                    } else if(string === 'zingchart-week-1') {
+                        itemString = '.page__page-3__rank-week__content-list-items__list-music-items'.concat(this.currentIndex + 1);
+                    } else if(string === 'zingchart-week-2') {
+                        removeListItemActive(document.querySelectorAll('.page__page-3__rank-week__content-list-items__list-music-items'), 'zingchart-week-2');
+                        itemString = '.page__page-3__rank-week__content-list-items__list-music-items'.concat(this.currentIndex + 1).concat('.page__page-3__rank-week__content-list-items__list-music-items--2');
+                    }
+                    let item = document.querySelector(itemString);
+                    console.log(item);
+                    musicRun(item, string);
+                }
+            }
+
+
+            // solve find kind music now !! 
+            const solveFindKindMusicNow = () => {
+                let music = audio.src.split('/')[4];
+                for(let item of this.musicZingChart) {
+                    let path = item.path.split('/')[2];
+                    if(path === music) {
+                        return 1;
+                    }
+                }
+        
+                for(let item of this.musicWeek_1) {
+                    let path = item.path.split('/')[2];
+                    if(path === music) {
+                        console.log(path, music);
+                        return 2;
+                    }
+                }
+        
+                for(let item of this.musicWeek_2) {
+                    let path = item.path.split('/')[2];
+                    if(path === music) {
+                        return 3;
+                    }
+                }
+            }
+            if(+solveFindKindMusicNow() === 1) {
+                solveWhenMusicEnded(this.musicZingChart, 'zingchart');
+            } else if(+solveFindKindMusicNow() === 2) {
+                solveWhenMusicEnded(this.musicWeek_1, 'zingchart-week-1');
+            } else if(+solveFindKindMusicNow() === 3) {
+                solveWhenMusicEnded(this.musicWeek_2, 'zingchart-week-2');
+            }
+
+            // if(currentTimeMusic === durationTimeMusic) {
+            //     if(this.currentIndex === this.musicZingChart.length - 1) {
+            //         removeListItemActive(document.querySelectorAll('.page__page-3__list-items'), 'zingchart');
+            //         document.querySelector('.progress').value = 0;
+            //         audio.currentTime  = 0;
+            //         this.switch = !this.switch;
+            //         buttonDashboard.classList.toggle('dashboards__center-button__play--active', this.switch);
+            //         audio.pause();
+            //     } else {
+            //         removeListItemActive(document.querySelectorAll('.page__page-3__list-items'), 'zingchart');
+            //         this.currentIndex ++;
+            //         let itemString = '.page__page-3__list-items'.concat(this.currentIndex + 1);
+            //         let item = document.querySelector(itemString);
+            //         musicRun(item, 'zingchart');
+            //     }
+            // }
+
+                // Click Next Button 
+            nextButton.onclick = (e) => {
+                if(+solveFindKindMusicNow() === 1) {
+                    solveWhenMusicNext(this.musicZingChart, 'zingchart');
+                } else if(+solveFindKindMusicNow() === 2) {
+                    solveWhenMusicNext(this.musicWeek_1, 'zingchart-week-1');
+                } else if(+solveFindKindMusicNow() === 3) {
+                    solveWhenMusicNext(this.musicWeek_2, 'zingchart-week-2');
+                }
+            }
+
+            prevButton.onclick = (e) => {
+                if(+solveFindKindMusicNow() === 1) {
+                    solveWhenMusicPrevious(this.musicZingChart, 'zingchart');
+                } else if(+solveFindKindMusicNow() === 2) {
+                    solveWhenMusicPrevious(this.musicWeek_1, 'zingchart-week-1');
+                } else if(+solveFindKindMusicNow() === 3) {
+                    solveWhenMusicPrevious(this.musicWeek_2, 'zingchart-week-2');
+                }
+            }
+
+
+
+
+
 
         }
         
@@ -440,7 +621,6 @@ const app = {
         document.querySelectorAll('.page__page-3__rank-week__content-list-items__list-music-items--1').forEach(item => {
             item.onclick = (e) => {
                 removeListItemActive(document.querySelectorAll('.page__page-3__rank-week__content-list-items__list-music-items--1'), 'zingchart-week-1');
-                console.log(item)
                 this.currentIndex = +(item.classList[1][item.classList[1].length - 1]);
                 this.currentIndex -= 1;
                 musicRun(item, 'zingchart-week-1');
@@ -451,7 +631,6 @@ const app = {
         document.querySelectorAll('.page__page-3__rank-week__content-list-items__list-music-items--2').forEach(item => {
             item.onclick = (e) => {
                 removeListItemActive(document.querySelectorAll('.page__page-3__rank-week__content-list-items__list-music-items--2'), 'zingchart-week-2');
-                console.log(item)
                 this.currentIndex = +(item.classList[1][item.classList[1].length - 1]);
                 this.currentIndex -= 1;
                 musicRun(item, 'zingchart-week-2');
@@ -471,6 +650,10 @@ const app = {
         pauseButton.onclick = (e) => {
             pauseMusic();
         }
+        
+     
+
+        
 
         // set current volume
         document.querySelector('.progress-volume').onchange = (e) => {
