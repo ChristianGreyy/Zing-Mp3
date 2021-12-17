@@ -17,44 +17,46 @@ const resetPage = (page) => {
 
 }
 
+const solveDontCreate = () => {
+    let html = `
+        <div class="app-message">
+            <div class="app-message__side">
+
+            </div>
+            <div class="app-message__bell">
+                <i class="fas fa-bell"></i>
+            </div>
+            <div class="app-message__text">
+                <div class="app-message__text-title">
+                    Thông báo
+                </div>
+                <div class="app-message__text-content">
+                    Tính năng chưa được cập nhật !!
+                </div>
+            </div>
+            <div class="app-message__close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+    `
+    $('.app').append(html);
+
+    const myTimeOut = setTimeout(() =>{
+        document.querySelectorAll('.app-message').forEach(item => {
+            item.style.display = 'none';
+        })
+        // document.querySelector('.app-message').style.display = 'none';
+    },3000);
+
+    // myTimeOut();
+}
+
 let indexSideBar = 0;
 
 for(let i in menuListItem) {
     menuListItem[i].onclick = (e) => {
-        console.log(i)
         if(+i === 4 || +i === 6 || +i === 8 || +i === 9) {
-            // document.querySelector('.app-message').style.display = 'flex';
-            let html = `
-                <div class="app-message">
-                    <div class="app-message__side">
-
-                    </div>
-                    <div class="app-message__bell">
-                        <i class="fas fa-bell"></i>
-                    </div>
-                    <div class="app-message__text">
-                        <div class="app-message__text-title">
-                            Thông báo
-                        </div>
-                        <div class="app-message__text-content">
-                            Tính năng chưa được cập nhật !!
-                        </div>
-                    </div>
-                    <div class="app-message__close">
-                        <i class="fas fa-times"></i>
-                    </div>
-                </div>
-            `
-            $('.app').append(html);
-
-            const myTimeOut = setTimeout(() =>{
-                document.querySelectorAll('.app-message').forEach(item => {
-                    item.style.display = 'none';
-                })
-                // document.querySelector('.app-message').style.display = 'none';
-            },3000);
-
-            myTimeOut();
+            solveDontCreate();
         } else {
             resetPage(page);
             menuListItem[i].classList.add('menu__list-item--active');

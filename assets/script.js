@@ -2,7 +2,9 @@ let pauseButton = document.querySelector('.icon-pause');
 let playButton = document.querySelector('.icon-play');
 let nextButton = document.querySelector('.dashboards__center-button__next');
 let prevButton = document.querySelector('.dashboards__center-button__prev');
+let repeatButton = document.querySelector('.dashboards__center-button__repeat');
 let buttonDashboard = document.querySelector('.dashboards__center-button__play')
+
 
 ////////////////
 let audio = document.querySelector('#audio');
@@ -468,7 +470,6 @@ const app = {
 
             // solve when the music zingchart next   
             const solveWhenMusicNext = (kindMusic, string) => {
-                console.log(kindMusic, string);
                 if(this.currentIndex === kindMusic.length - 1) {
                     if(string === 'zingchart') {
                         removeListItemActive(document.querySelectorAll('.page__page-3__list-items'), string);
@@ -960,7 +961,7 @@ const themeActive = (color) => {
             } else if(+i === 5) {
                 removeTickTheme();
                 document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
-                alert('Lazyy :(((')
+                solveDontCreate();
             } else if(+i === 6) {
                 document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
                 removeTickTheme();
@@ -979,18 +980,35 @@ const themeActive = (color) => {
                 removeTickTheme();
                 document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
                 color = '#231B2E'
+                document.querySelector('.dashboards').style.backgroundColor = '#181818'
                 document.querySelectorAll('.page__page-3__rank-week__content-list-items').forEach(item => {
                     item.style.backgroundColor = 'hsla(0,0%,100%,0.05)';
                 })
                 document.querySelectorAll('.page__page-4-channels__right-top-items').forEach(item => {
                     item.style.backgroundColor = 'hsla(0,0%,100%,0.05)';
                 })
-                document.querySelector('.dashboards').style.backgroundColor = '#181818'
                 document.querySelector('.page__page-4-channels__left-list').style.backgroundColor = 'hsla(0,0%,100%,0.05)'
             } else if(+i === 8) {
                 removeTickTheme();
                 document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
                 color = '#101f3f'
+                document.querySelector('.dashboards').style.backgroundColor = '#1A2742'
+                document.querySelectorAll('.page__page-3__rank-week__content-list-items').forEach(item => {
+                    item.style.backgroundColor = 'hsla(0,0%,100%,0.05)';
+                })
+                document.querySelectorAll('.page__page-4-channels__right-top-items').forEach(item => {
+                    item.style.backgroundColor = 'hsla(0,0%,100%,0.05)';
+                })
+                document.querySelector('.page__page-4-channels__left-list').style.backgroundColor = 'hsla(0,0%,100%,0.05)'
+                
+            } else if(+i === 9) {   
+                removeTickTheme();
+                document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
+                color = '#294162';
+            } else if(+i === 10) {
+                removeTickTheme();
+                document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
+                color = '#124534';
             }
             if(i === 0) {
                 document.querySelector('.menu').style.backgroundColor = 'rgba(0,0,0,0.05)';
