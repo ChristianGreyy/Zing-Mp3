@@ -468,6 +468,7 @@ const app = {
 
             // solve when the music zingchart next   
             const solveWhenMusicNext = (kindMusic, string) => {
+                console.log(kindMusic, string);
                 if(this.currentIndex === kindMusic.length - 1) {
                     if(string === 'zingchart') {
                         removeListItemActive(document.querySelectorAll('.page__page-3__list-items'), string);
@@ -581,7 +582,6 @@ const app = {
 
                 // Click Next Button 
             nextButton.onclick = (e) => {
-                alert('ok')
                 if(+solveFindKindMusicNow() === 1) {
                     solveWhenMusicNext(this.musicZingChart, 'zingchart');
                 } else if(+solveFindKindMusicNow() === 2) {
