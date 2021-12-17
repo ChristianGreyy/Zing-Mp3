@@ -197,6 +197,7 @@
     margin-top: 12px;
     background-color: #2E2738;
     padding: 4px 24px;
+    border-radius: 4px;
 
 }
 .page__page-4-channels__left-list-items{
@@ -286,6 +287,7 @@
     display: flex;
     background-color: #2E2738;
     padding: 8px;
+    border-radius: 4px;
 }
 
 .page__page-4-channels__right-top-img{

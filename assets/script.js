@@ -22,7 +22,7 @@ const app = {
         }
         ,
         {
-            name: 'Bước qua mùa cô đơn',
+            name: 'Bước qua nhau',
             singer: 'Vũ',
             background: './background/buocquanhau.jpg',
             path: './music/buocquanhau.mp3',
@@ -79,7 +79,7 @@ const app = {
         }
         ,
         {
-            name: 'Bước qua mùa cô đơn',
+            name: 'Bước qua nhau',
             singer: 'Vũ',
             background: './background/buocquanhau.jpg',
             path: './music/buocquanhau.mp3',
@@ -581,6 +581,7 @@ const app = {
 
                 // Click Next Button 
             nextButton.onclick = (e) => {
+                alert('ok')
                 if(+solveFindKindMusicNow() === 1) {
                     solveWhenMusicNext(this.musicZingChart, 'zingchart');
                 } else if(+solveFindKindMusicNow() === 2) {
@@ -752,6 +753,12 @@ document.querySelector('.page__header__right-items--setting').onclick = (e) => {
 
 // THEME
 
+const removeTickTheme = () => {
+    document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image').forEach(item => {
+        item.classList.remove('page__header__right-items--theme-Absolute-list-items-list-items-image--active');
+    })
+}
+
 document.querySelector('.page__header__right-items--theme').onclick = (e) => {
     document.querySelector('.page__header__right-items--theme-Absolute').style.display = 'block';
     document.querySelector('.app-overlay').style.display = 'block';
@@ -770,6 +777,8 @@ const themeActive = (color) => {
     for(let i in listTheme) {
         listTheme[i].onclick = (e) => {    
             if(+i === 0) {
+                removeTickTheme();
+                document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
                 color = '#ffffffe6';
                 document.querySelector('.dashboards__left-center-name-music').style.color = 'black';
                 document.querySelector('.dashboards__left-center-name-singer').style.color = 'black';
@@ -809,19 +818,66 @@ const themeActive = (color) => {
                     item.style.color = 'black';
                 })
                 document.querySelectorAll('.page__page-3__rank-week__content-list-items-see-more-btn').forEach(item => {
-                    item.style.border = '1px solid violet';
-                    item.style.color = 'violet';
+                    item.style.border = '1px solid #670091';
+                    item.style.color = '#670091';
                 })
                 document.querySelectorAll('.page__page-3__rank-week__content-list-items-titles-where').forEach(item => {
-                    item.style.color = 'violet';
+                    item.style.color = '#670091';
                 })
+                document.querySelector('.page__page-3__see-more__button').style.color = '#670091';
+                document.querySelector('.page__page-3__see-more__button').style.border = '1px solid #670091';
+
+                document.querySelectorAll('.page__page-2_list--near').forEach(item => {
+                    item.style.color = 'black';
+                })
+                document.querySelectorAll('.page__page-4-channels__right-top-items').forEach(item => {
+                    item.style.backgroundColor = '#EDEDED';
+                })
+                document.querySelectorAll('.page__page-4-channels__right-top-des-name').forEach(item => {
+                    item.style.color = 'black';
+                })
+                document.querySelectorAll('.page__page-4-channels__right-top-des-time').forEach(item => {
+                    item.style.color = 'rgba(0,0,0,0.6)';
+                })
+                document.querySelectorAll('.page__page-4-content-list-items-titles-list-items-background-des').forEach(item => {
+                    item.style.color = 'black';
+                })
+                document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-title').forEach(item => {
+                    item.style.color = 'black';
+                })
+                document.querySelectorAll('.page__header__right-items--theme-Absolute-titles').forEach(item => {
+                    item.style.color = 'black';
+                })
+
+                document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-des').forEach(item => {
+                    item.style.color = 'black';
+                })
+
+                document.querySelectorAll('.page__page-4-header-list-items-titles').forEach(item => {
+                    item.style.color = 'black';
+                })
+                document.querySelectorAll('.page__page-4-header-list-items-listening').forEach(item => {
+                    item.style.color = 'rgba(0,0,0,0.6)';
+                })
+                document.querySelectorAll('.page__page-4-content-list-items-titles-right-sources').forEach(item => {
+                    item.style.color = 'black';
+                })
+
+                document.querySelector('.page__page-4-channels__left-list').style.backgroundColor = '#EDEDED';
+                document.querySelectorAll('.page__page-3__header-titles').forEach(item => {
+                    item.style.color = '#670091';
+                })
+                
 
                 document.querySelector('.dashboards__center-bottom__time-current').style.color = 'black';
                 document.querySelector('.dashboards__center-bottom__time-end').style.color = 'black';
 
             } else if(+i === 1) {
-                
+                removeTickTheme();
+                document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
             } else if(+i === 2) {
+                removeTickTheme();
+                document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
                 color = '#101f3f'
                 document.querySelector('.dashboards').style.backgroundColor = '#172C48';
                 document.querySelector('.page__header__right-items--setting-absolute').style.backgroundColor = '#1B3161';
@@ -873,22 +929,67 @@ const themeActive = (color) => {
                 document.querySelector('.dashboards__center-bottom__time-current').style.color = 'white';
                 document.querySelector('.dashboards__center-bottom__time-end').style.color = 'white';
             } else if(+i === 3) {
+                removeTickTheme();
+                document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
+
                 color = '#800064'
                 document.querySelectorAll('.page__page-4-channels__right-top-items').forEach(item => {
                     item.style.backgroundColor = '#871B6F';
                 })
                 document.querySelector('.page__page-4-channels__left-list').style.backgroundColor = '#871B6F';
                 document.querySelector('.dashboards').style.backgroundColor = '#660150';
+                document.querySelectorAll('.page__page-3__rank-week__content-list-items').forEach(item => {
+                    item.style.backgroundColor = '#871B6F';
+                })
+              
 
             } else if(+i === 4) {
+                removeTickTheme();
+                document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
                 color = '#57403b'
+                document.querySelectorAll('.page__page-3__rank-week__content-list-items').forEach(item => {
+                    item.style.backgroundColor = '#5D4742';
+                })
+                
+                document.querySelectorAll('.page__page-4-channels__right-top-items').forEach(item => {
+                    item.style.backgroundColor = '#5D4742';
+                })
+                document.querySelector('.dashboards').style.backgroundColor = '#412f2b'
+                document.querySelector('.page__page-4-channels__left-list').style.backgroundColor = '#5D4742'
+                
             } else if(+i === 5) {
+                removeTickTheme();
+                document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
                 alert('Lazyy :(((')
             } else if(+i === 6) {
-                color = '#1e1e1e'
+                document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
+                removeTickTheme();
+                document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
+                color = '#2D2D2D'
+                document.querySelectorAll('.page__page-3__rank-week__content-list-items').forEach(item => {
+                    item.style.backgroundColor = '#444444';
+                })
+                document.querySelectorAll('.page__page-4-channels__right-top-items').forEach(item => {
+                    item.style.backgroundColor = '#444444';
+                })
+                document.querySelector('.dashboards').style.backgroundColor = '#181818'
+                document.querySelector('.page__page-4-channels__left-list').style.backgroundColor = '#444444'
+                
             } else if(+i === 7) {
-                color = '#170f23'
+                removeTickTheme();
+                document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
+                color = '#231B2E'
+                document.querySelectorAll('.page__page-3__rank-week__content-list-items').forEach(item => {
+                    item.style.backgroundColor = 'hsla(0,0%,100%,0.05)';
+                })
+                document.querySelectorAll('.page__page-4-channels__right-top-items').forEach(item => {
+                    item.style.backgroundColor = 'hsla(0,0%,100%,0.05)';
+                })
+                document.querySelector('.dashboards').style.backgroundColor = '#181818'
+                document.querySelector('.page__page-4-channels__left-list').style.backgroundColor = 'hsla(0,0%,100%,0.05)'
             } else if(+i === 8) {
+                removeTickTheme();
+                document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
                 color = '#101f3f'
             }
             if(i === 0) {
@@ -916,6 +1017,34 @@ const themeActive = (color) => {
             document.querySelector('.page__header__right-items--theme-Absolute').style.backgroundColor = color;
 
             
+            if(+i !== 0) {
+           
+           
+                document.querySelectorAll('.page__page-3__list-items').forEach(item => {
+                    item.style.border = '1px solid transparent';
+                })
+
+                document.querySelectorAll('.page__page-4-header-list-items-listening').forEach(item => {
+                    item.style.color = 'hsla(0,0%,100%,0.5)';
+                })
+
+                document.querySelectorAll('.page__page-4-header-list-items-titles').forEach(item => {
+                    item.style.color = 'white';
+                })
+
+                document.querySelectorAll('.page__page-3__rank-week__content-list-items__list-music-items-des-name').forEach(item => {
+                    item.style.color = 'white';
+                })
+                document.querySelectorAll('.page__page-3__rank-week__content-list-items__list-music-items-des-singer').forEach(item => {
+                    item.style.color = 'hsla(0,0%,100%,0.5)';
+                })
+                document.querySelectorAll('.page__page-3__header-titles').forEach(item => {
+                    item.style.color = 'white';
+                })
+
+                document.querySelector('.page__page-3__see-more__button').style.color = 'white';
+                document.querySelector('.page__page-3__see-more__button').style.border = '1px solid white';
+            }
             
           
         }
@@ -974,3 +1103,11 @@ new Chart("myChart2", {
     legend: {display: false}
   }
 });
+
+// MESSAGE 
+
+if(document.querySelector('.app-message__close')) {
+    document.querySelector('.app-message__close').onclick = (e) => {
+        document.querySelector('.app-message').style.display = 'none';
+    }
+}
