@@ -787,3 +787,169 @@
     cursor: pointer;
 
 }
+
+/* SIDEBAR */
+
+.app__sidebar {
+    width: 330px;
+    position: absolute;
+    background-color:#170f23;
+    height: 100%;
+    z-index: 6;
+    overflow-y: scroll;
+    padding: 16px 12px;
+    /* animation: ; */
+    animation-iteration-count: 1;
+    display: none;
+}
+
+@keyframes moveFromRightToLeft {
+    from {
+        right: -320px;
+    } to {
+        right: 0;
+    }
+}
+
+@keyframes moveFromLeftToRight {
+    from {
+        right: 0;
+    } to {
+        right: -320px;
+    }
+}
+
+.app__sidebar-header{
+    display: flex;
+    color: #dadada;
+    align-items: center;    
+    cursor: pointer;
+}  
+
+.app__sidebar-header-left{
+    background-color: #2F2739;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    width: 240px;
+    padding: 4px 4px;
+    height: 34px;
+    justify-content: space-between;
+    border-radius: 16px;
+}   
+.app__sidebar-header-left-button{
+    margin-left: 0px;
+    border-radius: 16px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    font-weight: bold;
+}
+
+.app__sidebar-header-left-button.app__sidebar-header-left-button--active {
+    background-color:hsla(0,0%,100%,0.3);
+
+}
+
+.app__sidebar-header-right,
+.app__sidebar-header-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    background-color: #2F2739;
+    margin-left: 4px;
+}
+
+.app__sidebar-list{
+    padding-left: 0;
+    list-style: none;
+    margin-top: 18px;
+}
+.app__sidebar-list-item{
+    display: flex;
+    cursor: pointer;
+    padding: 4px 4px;
+    border-radius: 4px;
+}
+.app__sidebar-list-item--1 {
+    background-color: #7200A1;
+    border-radius: 4px;
+}
+
+.app__sidebar-list-item--1 .app__sidebar-list-item__background{
+    opacity: 0.7;
+}
+
+.app__sidebar-list-item--1 .app__sidebar-list-item__background-icon{
+    display: block;
+}
+
+.app__sidebar-list-item:hover {
+    background-color: #493F59;
+}
+
+.app__sidebar-list-item:hover .app__sidebar-list-item__background-icon{
+    display: block;
+}
+
+.app__sidebar-list-item:hover .app__sidebar-list-item__background{
+    opacity: 0.5;
+}
+
+.app__sidebar-list-item__background{
+    height: 40px;
+    width: 40px;
+    border-radius: 4px;
+    position: relative;
+
+}
+.app__sidebar-list-item__img{
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+}
+.app__sidebar-list-item__background-icon{
+    position: absolute;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+.app__sidebar-list-item-des{
+    margin-left: 14px;
+}
+.app__sidebar-list-item-des-name{
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+.app__sidebar-list-item-des-singer{
+    color: hsla(0,0%,100%,0.5);
+    font-size: 13px;
+}
+
+.app__sidebar-list-title{
+    margin-top: 12px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+.app__sidebar-list-where{
+    display: flex;
+    margin-bottom: 12px;
+}
+.app__sidebar-list-where-1{
+    color: hsla(0,0%,100%,0.5);
+    font-size: 15px;
+}
+.app__sidebar-list-where-2{
+    color: #7200A1;
+    font-size: 15px;
+    padding-left: 4px;
+}
