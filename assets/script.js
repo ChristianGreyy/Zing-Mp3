@@ -501,6 +501,7 @@ const app = {
 
             // solve when the music zingchart next   
             const solveWhenMusicNext = (kindMusic, string) => {
+                alert('ok')
                 if(this.currentIndex === kindMusic.length - 1) {
                     if(string === 'zingchart') {
                         removeListItemActive(document.querySelectorAll('.page__page-3__list-items'), string);
