@@ -35,7 +35,7 @@
 
 }
 .dashboards{
-    z-index: 2;
+    z-index: 7;
     position: absolute;
     bottom: 0;
     height: 90px;
@@ -594,7 +594,7 @@
 
 .page__header__right-items--theme-Absolute{
     position: fixed;
-    z-index: 6;
+    z-index: 8;
     top: 0;
     bottom: 0;
     background-color: #432275;

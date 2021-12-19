@@ -12,6 +12,7 @@ let buttonDashboard = document.querySelector('.dashboards__center-button__play')
 ////////////////
 let audio = document.querySelector('#audio');
 
+
 const app = {
     currentIndex: 0,
     currentVolume: 1,
@@ -67,11 +68,35 @@ const app = {
         }
         ,
         {
+            name: 'Chạm khẽ tim anh 1 chút thôi',
+            singer: 'Noo Phước Thịnh',
+            background: './background/chamkhetimanh1chutthoi.jpg',
+            path: './music/chamkhetimanhmotchutthoi.m4a',
+            length: '05:46'
+        }
+        ,
+        {
             name: 'Khó vẽ nụ cười',
             singer: 'Đạt G, Du Uyên',
             background: './background/khovenucuoi.jpg',
             path: './music/khovenucuoi.mp3',
             length: '05:32'
+        }
+        ,
+        {
+            name: 'Ai là người thương em',
+            singer: 'Quân AP',
+            background: './background/ailanguoithuongem.jpg',
+            path: './music/ailanguoithuongem.mp3',
+            length: '05:07'
+        }
+        ,
+        {
+            name: 'Sóng gió',
+            singer: 'Jack, KICM',
+            background: './background/songgio.jpg',
+            path: './music/songgio.mp3',
+            length: '04:14'
         }
     ],
     musicWeek_1: [
@@ -364,7 +389,6 @@ const app = {
                 findMusicByIndex(this.musicZingChart, this.currentIndex);
             } else if(string === 'zingchart-week-1') {
                 findMusicByIndex(this.musicWeek_1, this.currentIndex);
-                console.log(this.currentIndex);
             } else if(string === 'zingchart-week-2') {
                 findMusicByIndex(this.musicWeek_2, this.currentIndex);
             }
@@ -467,7 +491,6 @@ const app = {
                                 itemString = '.page__page-3__rank-week__content-list-items__list-music-items'.concat(this.currentIndex + 1).concat('.page__page-3__rank-week__content-list-items__list-music-items--2');
                             }
                             let item = document.querySelector(itemString);
-                            console.log(item);
                             musicRun(item, string);
                         }
                     } else {
@@ -504,7 +527,6 @@ const app = {
                     audio.pause();
                 } else {
                     this.currentIndex = isRandomButton ? random(kindMusic) : (this.currentIndex+1);
-                    console.log(kindMusic.length, this.currentIndex);
                     let itemString = "";
                     if(string === 'zingchart') {
                         removeListItemActive(document.querySelectorAll('.page__page-3__list-items'), 'zingchart');
@@ -516,7 +538,6 @@ const app = {
                         itemString = '.page__page-3__rank-week__content-list-items__list-music-items'.concat(this.currentIndex + 1).concat('.page__page-3__rank-week__content-list-items__list-music-items--2');
                     }
                     let item = document.querySelector(itemString);
-                    console.log(item);
                     musicRun(item, string);
                 }
             }
@@ -652,7 +673,14 @@ const app = {
         document.querySelectorAll('.page__page-3__list-items').forEach(item => {
             item.onclick = (e) => {
                 removeListItemActive(document.querySelectorAll('.page__page-3__list-items'), 'zingchart');
-                this.currentIndex = +(item.classList[1][item.classList[1].length - 1]);
+                let index = "";
+                let restore = Number.isInteger(+item.classList[1][item.classList[1].length - 2]) && Number.isInteger(+item.classList[1][item.classList[1].length - 1]);
+                if(restore) {
+                    index += item.classList[1][item.classList[1].length - 2];
+                }
+                index += item.classList[1][item.classList[1].length - 1];
+                // console.log(index);
+                this.currentIndex = +(index);
                 this.currentIndex -= 1;
                 musicRun(item, 'zingchart');
             }
@@ -733,6 +761,8 @@ const app = {
 
 
 app.run();
+
+
 
 
 // THE CHART
@@ -1044,10 +1074,26 @@ const themeActive = (color) => {
                 removeTickTheme();
                 document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
                 color = '#294162';
+                document.querySelector('.dashboards').style.backgroundColor = '#1A2742'
+                document.querySelectorAll('.page__page-3__rank-week__content-list-items').forEach(item => {
+                    item.style.backgroundColor = 'hsla(0,0%,100%,0.05)';
+                })
+                document.querySelectorAll('.page__page-4-channels__right-top-items').forEach(item => {
+                    item.style.backgroundColor = 'hsla(0,0%,100%,0.05)';
+                })
+                document.querySelector('.page__page-4-channels__left-list').style.backgroundColor = 'hsla(0,0%,100%,0.05)'
             } else if(+i === 10) {
                 removeTickTheme();
                 document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
                 color = '#124534';
+                document.querySelector('.dashboards').style.backgroundColor = '#1A2742'
+                document.querySelectorAll('.page__page-3__rank-week__content-list-items').forEach(item => {
+                    item.style.backgroundColor = '#285345';
+                })
+                document.querySelectorAll('.page__page-4-channels__right-top-items').forEach(item => {
+                    item.style.backgroundColor = '#285345';
+                })
+                document.querySelector('.page__page-4-channels__left-list').style.backgroundColor = '#143A2E'
             }
             if(i === 0) {
                 document.querySelector('.menu').style.backgroundColor = 'rgba(0,0,0,0.05)';
@@ -1246,3 +1292,9 @@ document.querySelector('.dashboards__left__list').onclick = (e) => {
     }
     checkSideBar = !checkSideBar;
 }
+
+document.querySelectorAll('.page__page-6__list .page__page-3__list-items').forEach(item => {
+    item.onclick = (e) => {
+        solveDontCreate();
+    } 
+})
