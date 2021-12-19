@@ -615,6 +615,7 @@ const app = {
 
                 // Click Next Button 
             nextButton.onclick = (e) => {
+                alert('ok')
                 if(+solveFindKindMusicNow() === 1) {
                     solveWhenMusicNext(this.musicZingChart, 'zingchart');
                 } else if(+solveFindKindMusicNow() === 2) {
