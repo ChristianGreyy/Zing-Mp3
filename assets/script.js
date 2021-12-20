@@ -618,21 +618,13 @@ const app = {
 
                 // Click Next Button 
             nextButton.onclick = (e) => {
-                // alert(typeof solveWhenMusicNext)
-                alert(typeof solveFindKindMusicNow())
-                alert(+solveFindKindMusicNow());
-                alert(+solveFindKindMusicNow() === 1);
                 if(+solveFindKindMusicNow() === 1) {
-                    alert('function 1');
                     solveWhenMusicNext(this.musicZingChart, 'zingchart');
                 } else if(+solveFindKindMusicNow() === 2) {
                     solveWhenMusicNext(this.musicWeek_1, 'zingchart-week-1');
-                    alert('function 2');
                 } else if(+solveFindKindMusicNow() === 3) {
                     solveWhenMusicNext(this.musicWeek_2, 'zingchart-week-2');
-                    alert('function 3');
                 }
-                alert('function none');
 
             }
 
