@@ -420,8 +420,11 @@ const app = {
         findMusicByIndex(this.musicZingChart, 0);
 
         /* =============================== EVENT ============================== */
+      
 
         audio.ontimeupdate = (e) => {
+
+
             // solve current volume
             audio.volume = this.currentVolume;
             if(audio.volume === 0) {
@@ -615,7 +618,7 @@ const app = {
 
                 // Click Next Button 
             nextButton.onclick = (e) => {
-                alert('ok')
+                alert(typeof solveWhenMusicNext)
                 if(+solveFindKindMusicNow() === 1) {
                     solveWhenMusicNext(this.musicZingChart, 'zingchart');
                 } else if(+solveFindKindMusicNow() === 2) {
@@ -1300,3 +1303,4 @@ document.querySelectorAll('.page__page-6__list .page__page-3__list-items').forEa
         solveDontCreate();
     } 
 })
+
