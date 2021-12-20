@@ -950,6 +950,7 @@ const themeActive = (color) => {
             } else if(+i === 1) {
                 removeTickTheme();
                 document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
+                color = '#ffffffe6';
             } else if(+i === 2) {
                 removeTickTheme();
                 document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image')[i].classList.add('page__header__right-items--theme-Absolute-list-items-list-items-image--active')
@@ -1109,8 +1110,8 @@ const themeActive = (color) => {
             document.querySelectorAll('.page__header__right-items').forEach(item => {
                 item.style.backgroundColor = 'rgb(117 135 175 / 20%)';
             })
-            document.querySelector('.page__header__left-search').style.backgroundColor = color;
-            document.querySelector('.page__header__left-search__input').style.backgroundColor = color;
+            document.querySelector('.app-search').style.backgroundColor = color;
+            document.querySelector('.search__input').style.backgroundColor = color;
             document.querySelector('.page').style.backgroundColor = color;
             document.querySelector('.page__page-3__alpha').style.backgroundImage = `linear-gradient(180deg,hsla(0,0%,100%,0) 37%, ${color})`;
             document.querySelector('.page__page-6__alpha').style.backgroundImage = `linear-gradient(180deg,hsla(0,0%,100%,0) 37%, ${color})`;
@@ -1303,4 +1304,142 @@ document.querySelectorAll('.page__page-6__list .page__page-3__list-items').forEa
         solveDontCreate();
     } 
 })
+
+// Search
+
+document.querySelector('.search__input').onclick = (e) => {
+    let searchBlock = document.querySelector('.app-search');
+    let inputBlock = document.querySelector('.search__input');
+    document.querySelector('.app-search-list').style.display = 'block';
+    // searchBlock.style.height = '400px';
+    searchBlock.style.height = '300px';
+    searchBlock.style.overflowY = 'scroll';
+    let index = 0;
+    let list = document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image').forEach(item => {
+        if(item.classList.contains('page__header__right-items--theme-Absolute-list-items-list-items-image--active')) {
+            let color = "";
+            if(index === 0) {
+                color = '#F2F2F2';
+            } 
+            if(index === 2) {
+                color = '#274A78';
+            }
+            if(index === 3) {
+                color = '#F2D6D6';
+            }
+            if(index === 6) {
+                color = '#282828';
+            }
+            if(index === 7) {
+                color = '#432275';
+            }
+            if(index === 8) {
+                color = '#192F60';
+            }
+            if(index === 9) {
+                color = '#274A78';
+            }
+            if(index === 10) {
+                color = '#126E54';
+            }
+            searchBlock.style.backgroundColor = color;
+            inputBlock.style.backgroundColor = color;
+
+        }
+        index ++;
+    })
+}
+
+document.querySelector('.search__input').onblur = (e) => {
+    document.querySelector('.app-search-list').style.display = 'none';
+    let searchBlock = document.querySelector('.app-search');
+    let inputBlock = document.querySelector('.search__input');
+    searchBlock.style.height = '40px';
+    searchBlock.style.overflowY = 'visible';
+    let index = 0;
+    let list = document.querySelectorAll('.page__header__right-items--theme-Absolute-list-items-list-items-image').forEach(item => {
+        if(item.classList.contains('page__header__right-items--theme-Absolute-list-items-list-items-image--active')) {
+            let color = "";
+            if(index === 0) {
+                color = '#ffffffe6';
+            } 
+            if(index === 2) {
+                color = '#101f3f';
+            }
+            if(index === 3) {
+                color = '#800064';
+            }
+            if(index === 4) {
+                color = '#57403b';
+            }
+            if(index === 6) {
+                color = '#2D2D2D';
+            }
+            if(index === 7) {
+                color = '#231B2E';
+            }
+            if(index === 8) {
+                color = '#101f3f';
+            }
+            if(index === 9) {
+                color = '#294162';
+            }
+            if(index === 10) {
+                color = '#124534';
+            }
+            searchBlock.style.backgroundColor = color;
+            inputBlock.style.backgroundColor = color;
+
+        }
+        index ++;
+    })
+}
+
+document.querySelector('.search__input').onkeyup = (e) => {
+    let input = document.querySelector('.search__input');
+    let searchBlock = document.querySelector('.app-search');
+    searchBlock.style.overflowY = 'scroll';
+    let values = input.value;  
+    
+    let html = "";
+
+    app.musicZingChart.forEach(items => {
+        if(items.name.toLowerCase().search(values.toLowerCase()) != -1) {
+            html += `
+            <li class="app-search-list-item">
+                <div class="app-search-list-item-icon">
+                    <i class="fas fa-location-arrow"></i>
+                </div>
+                <div class="app-search-list-item-content">
+                    <img src="${items.background}" alt="" class="app-search-list-item-content-img">
+                    <div class="app-search-list-item-content-des">
+                        <div class="app-search-list-item-content-des-name">
+                            ${items.name}
+                        </div>
+                        <div class="app-search-list-item-content-des-singer">
+                            ${items.singer}
+                        </div>
+                    </div>
+                </div>
+            </li>
+            `
+        } else if(items.singer.toLowerCase().search(values.toLowerCase()) != -1) {
+            html += `
+            <li class="app-search-list-item">
+                <div class="app-search-list-item-icon">
+                    <i class="fas fa-location-arrow"></i>
+                </div>
+                <div class="app-search-list-item-content">
+                    ${items.singer}
+                </div>
+            </li>
+            `
+        }   
+
+    })
+    $('.app-search-list').html(html);
+    
+    
+}
+
 
