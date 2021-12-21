@@ -1478,6 +1478,7 @@ document.querySelector('.search__input').onkeyup = (e) => {
 let mvMusic = () => {
 
     document.querySelector('.app__mv-header-right').onclick = (e) => {
+        document.querySelector('.app__mv').style.animation = 'moveTopToBottomMV .6s linear';
         document.querySelector('.app__mv').style.bottom = '-100vh';
     }
 
@@ -1514,6 +1515,8 @@ let mvMusic = () => {
     // ONclick MV
 
     document.querySelector('.dashboards__left__mv').onclick = (e) => {
+
+        document.querySelector('.app__mv').style.animation = 'moveBottomToTopMV .6s linear';
         document.querySelector('.app__mv').style.bottom = '0';
 
         let nowPathMusic= audio.src.split('/')[4];
@@ -1532,6 +1535,22 @@ let mvMusic = () => {
             }
         })
     }
+
+    // Click on item mv 
+
+    document.querySelectorAll('.app__mv-content-music-list-items').forEach(mv => {
+        mv.onclick = (e) => {
+            let nameMv = mv.querySelector('.app__mv-content-music-list-items-des').querySelector('.app__mv-content-music-list-items-des-name').innerText.trim();
+            app.musicZingChart.forEach(music => {
+                if(music.name === nameMv) {
+                    document.querySelector('.mv').src = music.mv;
+                    document.querySelector('.app__mv-header-left-des-name').innerHTML = music.name;
+                    document.querySelector('.app__mv-header-left-des-singer').innerHTML = music.singer;
+                    document.querySelector('.app__mv-header-left-img').src = music.background;
+                }
+            })
+        }
+    })
 
 }
 
