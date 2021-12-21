@@ -93,6 +93,7 @@
     list-style: none;
 }
 .page__page-3__list-items{
+    position: relative;
     padding: 8px 12px;
     background: transparent;
     display: flex;
@@ -216,7 +217,8 @@
     font-size: 14px;
 }
 .page__page-3__list-items__center{
-
+    position: absolute;
+    left: 50%;
 }
 .page__page-3__list-items__center-name{
     color: hsla(0,0%,100%,0.5);

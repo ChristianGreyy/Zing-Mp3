@@ -831,7 +831,7 @@
     height:  84px;
     width: 320px;
     position: absolute;
-    z-index: 7;
+    z-index: 12;
     bottom: 20px;
     right: 20px;
     display: flex;
@@ -845,9 +845,9 @@
 
 @keyframes moveBottomToTop {
     0%   {bottom: 20px; opacity: 1;}
-    25%  {bottom: 80px; opacity: 0.9;}
-    50%  {bottom: 160px; opacity: 0.8;}
-    75%  {bottom: 240px; opacity: 0.7;}
+    25%  {bottom: 80px; opacity: 1;}
+    50%  {bottom: 160px; opacity: 1;}
+    75%  {bottom: 240px; opacity: 0.8;}
     100% {bottom: 300px; opacity: 0.6;}
 }
 
@@ -885,7 +885,7 @@
     width: 330px;
     position: absolute;
     background-color:#170f23;
-    height: 100%;
+    height: calc(100% - 90px);
     z-index: 6;
     overflow-y: scroll;
     padding: 16px 12px;

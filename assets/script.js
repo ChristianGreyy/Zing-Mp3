@@ -92,6 +92,30 @@ const app = {
         }
         ,
         {
+            name: 'Thay tôi yêu cô ấy',
+            singer: 'Thanh Hưng',
+            background: './background/thaytoiyeucoay.jpg',
+            path: './music/thaytoiyeucoay.mp3',
+            length: '05:28'
+        }
+        ,
+        {
+            name: 'Xin đừng lặng im',
+            singer: 'Sobin Hoàng Sơn',
+            background: './background/xindunglangim.jpg',
+            path: './music/xindunglangim.mp3',
+            length: '04:09'
+        }
+        ,
+        {
+            name: 'Bông hoa đẹp nhất',
+            singer: 'Quân AP',
+            background: './background/bonghoadepnhat.jpeg',
+            path: './music/bonghoadepnhat.mp3',
+            length: '05:15'
+        }
+        ,
+        {
             name: 'Sóng gió',
             singer: 'Jack, KICM',
             background: './background/songgio.jpg',
@@ -504,7 +528,6 @@ const app = {
 
             // solve when the music zingchart next   
             const solveWhenMusicNext = (kindMusic, string) => {
-                alert('ok')
                 if(this.currentIndex === kindMusic.length - 1) {
                     if(string === 'zingchart') {
                         removeListItemActive(document.querySelectorAll('.page__page-3__list-items'), string);
